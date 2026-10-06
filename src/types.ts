@@ -58,6 +58,8 @@ export interface Defect {
   version: number
 }
 
+export type AuditTag = '已合并' | '待处理' | '冲突'
+
 export interface AuditEntry {
   id: string
   entityId: string
@@ -65,4 +67,25 @@ export interface AuditEntry {
   operator: string
   detail: string
   createdAt: string
+  tag?: AuditTag
+}
+
+export type SupplementKind = '整治补录' | '复测补录' | '关闭确认'
+export type SupplementStatus = '待同步' | '已合并' | '待处理' | '冲突'
+
+export interface SupplementEvent {
+  id: string
+  kind: SupplementKind
+  defectId: string
+  operator: string
+  recordedAt: string
+  createdAt: string
+  baseDefectVersion: number
+  baseSegmentVersion: number
+  status: SupplementStatus
+  reason?: string
+  mergedAt?: string
+  action?: RectificationAction
+  retest?: RetestResult
+  note?: string
 }
