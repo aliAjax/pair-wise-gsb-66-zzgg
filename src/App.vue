@@ -18,7 +18,7 @@ const title = computed(() => route.name === 'track' ? '区段里程与缺陷分�
         <RouterLink to="/work-orders"><span>整治复测</span><small>{{ store.defects.filter((item) => item.status !== '已关闭').length }} 项</small></RouterLink>
         <RouterLink to="/audit"><span>审计追溯</span><small>{{ store.audit.length }} 条</small></RouterLink>
       </nav>
-      <div class="aside-data"><span>数据接入</span><strong>轨检车数据已导入</strong><small>本地持久化 / 可离线补录</small></div>
+      <div class="aside-data"><span>数据接入</span><strong>轨检车数据已导入</strong><small>{{ store.online ? '在线' : '离线补录中' }} · 待合并 {{ store.pendingQueueCount }} 条</small></div>
     </aside>
     <v-main class="shell-main">
       <header class="top"><div><span>工务调度中心 / 轨道几何</span><h1>{{ title }}</h1></div><div><small>线别</small><strong>京广上行 / 沪昆下行</strong></div></header>
